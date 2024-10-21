@@ -1,3 +1,6 @@
+/* paras/public/first.css */
+
+/* Comment out the fixed footer styles
 footer {
     position: fixed;
     bottom: 0;
@@ -7,40 +10,40 @@ footer {
     text-align: center;
     padding: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
 
-  }
-  
-  .footer-container {
+.footer-container {
     max-width: 800px;
     margin: 0 auto;
     padding: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
-  }
-  
-  .social-links {
+}
+
+.social-links {
     list-style: none;
     margin: 0;
     padding: 0;
     display: flex;
     justify-content: center;
-  }
-  
-  .social-links li {
+}
+
+.social-links li {
     margin: 0 10px;
-  }
-  
-  .social-links a {
+}
+
+.social-links a {
     color: #fff;
     text-decoration: none;
     transition: color 0.2s ease;
-  }
-  
-  .social-links a:hover {
+}
+
+.social-links a:hover {
     color: #ccc;
-  }
-  
-  .fa {
+}
+
+.fa {
     font-size: 24px;
-  }
+}
+*/

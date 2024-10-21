@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import './App.css'; 
-import Sparkle from './Sparkle'; // If Sparkle is not used, you can remove this import.
 import { Link } from 'react-router-dom';
+
 const initialBoard = Array(9).fill(null);
 
-const App = () => {
+const Game = () => {
   const [board, setBoard] = useState(initialBoard);
   const [currentPlayer, setCurrentPlayer] = useState('X');
   const [winner, setWinner] = useState(null);
@@ -79,7 +79,7 @@ const App = () => {
     localStorage.setItem('theme', selectedTheme);
     applyTheme(selectedTheme);
   };
-
+ 
   const applyTheme = (selectedTheme) => {
     if (selectedTheme === 'dark') {
       setIsDarkMode(true);
@@ -102,7 +102,7 @@ const App = () => {
   const renderCell = (index) => {
     const value = board[index];
     return (
-      <div className="cell" onClick={() => handleCellClick(index)}>
+      <div className={`cell ${value ? value.toLowerCase() : ''}`} onClick={() => handleCellClick(index)}>
         {value}
       </div>
     );
@@ -117,50 +117,87 @@ const App = () => {
   if (gameMode === null) {
     return (
       <div className={`app ${isDarkMode ? 'dark' : ''}`}>
-        <div className="header">
-          <a href=""></a>
-              <div class="navbar-logo">
-                
-                <img src="https://www.svgrepo.com/show/143264/tic-tac-toe-game.svg" alt="Tic Tac Toe Logo" class="logo" />
-                <h1 class="navbar-title">Tic Tac Toe</h1>
-              </div>
-          <div class="navbar">
-              <div class="navbar-links">
-                <Link to="/home" class="nav-link">Home</Link>
-                <Link to="/about" class="nav-link">About</Link>
-                <Link to="/rules" class="nav-link">Rules</Link>
-                <Link to="/contact" class="nav-link">Contact</Link>
-                <Link to="/signup" className='nav-link'>Sign Up</Link>
-                <Link to="/Login" className='nav-link'>Log In</Link>
-              </div>
+        <header className="header">
+          <div className="navbar-logo">
+            <img src="https://www.svgrepo.com/show/143264/tic-tac-toe-game.svg" alt="Tic Tac Toe Logo" className="logo" />
+            <h1 className="navbar-title">Tic Tac Toe</h1>
+          </div>
+          <nav className="navbar">
+            <div className="navbar-links">
+              <Link to="/home" className="nav-link">Home</Link>
+              <Link to="/about" className="nav-link">About</Link>
+              <Link to="/rules" className="nav-link">Rules</Link>
+              <Link to="/contact" className="nav-link">Contact</Link>
+              <Link to="/signup" className='nav-link'>Sign Up</Link>
+              <Link to="/login" className='nav-link'>Log In</Link>
             </div>
-
+          </nav>
           <div className="theme-toggle">
-            <button className={`theme-button ${theme === 'system' ? 'active' : ''}`} onClick={() => handleThemeChange('system')}>
+            <button 
+              className={`theme-button ${theme === 'system' ? 'active' : ''}`} 
+              onClick={() => handleThemeChange('system')}
+              aria-label="System Theme"
+            >
               <span role="img" aria-label="System">💻</span>
             </button>
-            <button className={`theme-button ${theme === 'light' ? 'active' : ''}`} onClick={() => handleThemeChange('light')}>
+            <button 
+              className={`theme-button ${theme === 'light' ? 'active' : ''}`} 
+              onClick={() => handleThemeChange('light')}
+              aria-label="Light Theme"
+            >
               <span role="img" aria-label="Light">☀️</span>
             </button>
-            <button className={`theme-button ${theme === 'dark' ? 'active' : ''}`} onClick={() => handleThemeChange('dark')}>
+            <button 
+              className={`theme-button ${theme === 'dark' ? 'active' : ''}`} 
+              onClick={() => handleThemeChange('dark')}
+              aria-label="Dark Theme"
+            >
               <span role="img" aria-label="Dark">🌙</span>
             </button>
           </div>
-        </div>
+        </header>
         <div className="mode-selection">
           <h2>Choose Game Mode</h2>
           <button onClick={() => setGameMode('multiplayer')}>Multiplayer</button>
           <button onClick={() => setGameMode('ai')}>Play against AI</button>
         </div>
+        {/* Footer Component */}
+        <footer className="footer">
+          <div className="footer-container">
+            <p>&copy; 2024 Tic Tac Toe. All rights reserved.</p>
+            <ul className="social-links">
+              <li>
+                <a href="https://facebook.com/yourprofile" target="_blank" rel="noopener noreferrer">
+                  <i className="fa fa-facebook"></i>
+                </a>
+              </li>
+              <li>
+                <a href="https://twitter.com/yourprofile" target="_blank" rel="noopener noreferrer">
+                  <i className="fa fa-twitter"></i>
+                </a>
+              </li>
+              <li>
+                <a href="https://instagram.com/yourprofile" target="_blank" rel="noopener noreferrer">
+                  <i className="fa fa-instagram"></i>
+                </a>
+              </li>
+              <li>
+                <a href="https://linkedin.com/in/yourprofile" target="_blank" rel="noopener noreferrer">
+                  <i className="fa fa-linkedin"></i>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </footer>
       </div>
     );
   }
 
   return (
     <div className={`app ${isDarkMode ? 'dark' : ''}`}>
-      <div className="header">
+      <header className="header">
         <h1 className="title">Tic Tac Toe</h1>
-      </div>
+      </header>
 
       <div className="winner-counter">
         <div className={winner === 'X' ? 'winner-highlight' : ''}>
@@ -185,8 +222,44 @@ const App = () => {
           <button onClick={resetGame}>Restart</button>
         </div>
       )}
+
+      {draw && (
+        <div className="winner-message">
+          <p>It's a draw!</p>
+          <button onClick={resetGame}>Restart</button>
+        </div>
+      )}
+
+      {/* Footer Component */}
+      <footer className="footer">
+        <div className="footer-container">
+          <p>&copy; 2024 Tic Tac Toe. All rights reserved.</p>
+          <ul className="social-links">
+            <li>
+              <a href="https://facebook.com/yourprofile" target="_blank" rel="noopener noreferrer">
+                <i className="fa fa-facebook"></i>
+              </a>
+            </li>
+            <li>
+              <a href="https://twitter.com/yourprofile" target="_blank" rel="noopener noreferrer">
+                <i className="fa fa-twitter"></i>
+              </a>
+            </li>
+            <li>
+              <a href="https://instagram.com/yourprofile" target="_blank" rel="noopener noreferrer">
+                <i className="fa fa-instagram"></i>
+              </a>
+            </li>
+            <li>
+              <a href="https://linkedin.com/in/yourprofile" target="_blank" rel="noopener noreferrer">
+                <i className="fa fa-linkedin"></i>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </footer>
     </div>
   );
 };
 
-export default App;
+export default Game;

@@ -362,3 +362,34 @@ body, .app {
     font-size: 1rem;
   }
 }
+
+/* Light mode styles */
+.light {
+  background-color: #ffffff;
+  color: #000000;
+}
+
+/* Dark mode styles */
+.dark {
+  background-color: #121212;
+  color: #ffffff;
+}
+
+/* Styles for About, Rules, and Contact pages */
+.about, .rules, .contact {
+  padding: 20px;
+  min-height: 100vh;
+}
+
+.about h1, .rules h1, .contact h1 {
+  margin-bottom: 20px;
+}
+
+.rules ul {
+  list-style-type: disc;
+  padding-left: 20px;
+}
+
+.rules li {
+  margin-bottom: 10px;
+}

@@ -124,7 +124,7 @@ const Game = () => {
           </div>
           <nav className="navbar">
             <div className="navbar-links">
-              <Link to="/home" className="nav-link">Home</Link>
+              <Link to="/" className="nav-link">Home</Link>
               <Link to="/about" className="nav-link">About</Link>
               <Link to="/rules" className="nav-link">Rules</Link>
               <Link to="/contact" className="nav-link">Contact</Link>
